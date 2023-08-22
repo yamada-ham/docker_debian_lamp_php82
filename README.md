@@ -2,7 +2,7 @@
 
 ## システム環境
 ```
-PHP8.1
+PHP8.2
 MySQL8
 Apache
 Composer

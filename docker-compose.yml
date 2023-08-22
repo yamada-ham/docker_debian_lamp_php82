@@ -1,0 +1,60 @@
+version: “3.8”
+
+volumes:
+  mysql-data:
+
+services:
+  web:
+    build: ./web
+    ports:
+      # - 80:80
+      - 780:80
+      - 781:81
+      - 782:82
+      - 783:83
+      - 784:84
+      - 720:4200
+      # - 443:443
+      - 1780:8000
+      - 1781:8001
+      - 1782:8002
+      # - 20:20
+      # - 21:21
+      # - 30001-30005:30001-30005
+      # - 3000:3000
+    restart: always
+    volumes:
+      - ./web/html:/var/www/html
+      - ./web/volumes/apache2:/etc/apache2
+      - ./web/volumes/php/8.1/apache2/php.ini:/etc/php/8.1/apache2/php.ini
+      - ./web/volumes/phpMyAdmin:/usr/share/phpMyAdmin
+      - ./web/volumes/supervisord.conf:/etc/supervisor/supervisord.conf
+      - ./web/volumes/ftp/vsftpd.conf:/etc/vsftpd.conf
+      - ./web/volumes/ftp/ftp_dir:/var/www/ftp_dir
+      - ./web/volumes/ftp/user_conf:/etc/vsftpd/user_conf
+      - ./web/volumes/ftp/chroot_list:/etc/vsftpd/chroot_list
+      - ./web/volumes/ftp/user_list:/etc/vsftpd/user_list
+      - ./web/volumes/backup_db:/home/backup_db
+    working_dir: /var/www/html
+    tty: true
+    # platform: linux/x86_64 m1以外はコメントアウト
+    privileged: true 
+    depends_on: 
+      - db
+
+  db:
+    build: ./db
+    ports:
+      # - 3306:3306
+      - 706:3306
+    restart: always
+    platform: linux/x86_64
+    environment:
+      # MYSQL_USER: my_user
+      # MYSQL_PASSWORD: test1234
+      MYSQL_ROOT_PASSWORD: root
+    volumes:
+       - mysql-data:/var/lib/mysql
+    tty: true
+    privileged: true 
+

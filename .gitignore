@@ -7,3 +7,5 @@ web/volumes/backup_db/*
 !web/volumes/backup_db/memo.txt
 
 web/volumes/phpMyAdmin/tmp/twig/*
+
+.DS_Store

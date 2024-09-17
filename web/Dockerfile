@@ -36,7 +36,7 @@ RUN curl -sS https://getcomposer.org/installer | php && \
 # mv ./phpMyAdmin /usr/share/
 
 # Node.js Angular
-RUN curl -sL https://deb.nodesource.com/setup_18.x | bash - && \
+RUN curl -sL https://deb.nodesource.com/setup_22.x | bash - && \
     apt install -y nodejs && \
     npm install -g @angular/cli
 

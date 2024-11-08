@@ -13,6 +13,9 @@ services:
       - 782:82
       - 783:83
       - 784:84
+      - 785:85
+      - 786:86
+      - 787:87
       - 720:4200
       # - 443:443
       - 1780:8000
@@ -22,7 +25,7 @@ services:
       # - 20:20
       # - 21:21
       # - 30001-30005:30001-30005
-      # - 3000:3000
+      - 3000:3000
     restart: always
     volumes:
       - ./web/html:/var/www/html
@@ -38,7 +41,7 @@ services:
       - ./web/volumes/backup_db:/home/backup_db
     working_dir: /var/www/html
     tty: true
-    # platform: linux/x86_64 m1以外はコメントアウト
+    # platform: linux/x86_64
     privileged: true 
     depends_on: 
       - db

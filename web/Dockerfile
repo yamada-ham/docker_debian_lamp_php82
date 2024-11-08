@@ -29,16 +29,17 @@ RUN curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/local/bin/composer
 
 # phpMyAdmin
-# RUN curl -OL https://files.phpmyadmin.net/phpMyAdmin/5.2.1/phpMyAdmin-5.2.1-all-languages.tar.gz && \
-# tar xzvf phpMyAdmin-5.2.1-all-languages.tar.gz && \
-# mv phpMyAdmin-5.2.1-all-languages phpMyAdmin && \
-# rm -rf phpMyAdmin-5.2.1-all-languages.tar.gz && \
-# mv ./phpMyAdmin /usr/share/
+RUN curl -OL https://files.phpmyadmin.net/phpMyAdmin/5.2.1/phpMyAdmin-5.2.1-all-languages.tar.gz && \
+tar xzvf phpMyAdmin-5.2.1-all-languages.tar.gz && \
+mv phpMyAdmin-5.2.1-all-languages phpMyAdmin && \
+rm -rf phpMyAdmin-5.2.1-all-languages.tar.gz && \
+mv ./phpMyAdmin /usr/share/
 
 # Node.js Angular
 RUN curl -sL https://deb.nodesource.com/setup_22.x | bash - && \
     apt install -y nodejs && \
-    npm install -g @angular/cli
+    npm install -g @angular/cli \
+    npm install -g yarn
 
 # ftp 準備
 RUN mkdir -p /etc/vsftpd && touch /etc/vsftpd/user_list && mkdir -p /etc/vsftpd/user_conf && touch /etc/vsftpd/chroot_list && mkdir -p /var/run/vsftpd/empty
